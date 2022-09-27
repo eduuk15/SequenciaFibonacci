@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       fontSize: {
-        title: ['2.2rem', '4rem']
+        title: ['3.0rem', '4rem']
       },
       colors: {
         'violetImage': '#6c32ff'

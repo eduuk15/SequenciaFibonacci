@@ -3,19 +3,15 @@
 
   <div class="w-full sm:w-1/2 lg:w-1/3 mx-auto">
     <p class="flex justify-center text-violetImage font-semibold text-title">
-      Sequência de Fibonacci
+      Fibonacci
     </p>
     <div class="flex justify-center">
       <img class="object-contain h-48 w-96" src="https://cdn-icons-png.flaticon.com/512/3383/3383688.png" alt="">
     </div>
   </div>
 
-  <form @submit.stop.prevent="acharTermo">
+  <form @submit.stop.prevent="acharTermo" class="pt-4">
 
-    <label
-     for="search"
-     class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Your Email
-    </label>
     <div class="flex justify-center">
       <div class="relative">
         <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
@@ -43,17 +39,19 @@
           placeholder="Insira o termo que deseja buscar"
           required
         >
+
         <button
           type="submit"
-          class="text-white absolute left-6 px-20 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          class="text-white absolute left-24 top-16 px-6 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
           Pesquisar
         </button>
+
       </div>
     </div>
   </form>
 
-  {{ numero }}<sup>{{notation}}</sup>
+    {{ numero }}<sup>{{notation}}</sup>
 </div>
 </template>
 
