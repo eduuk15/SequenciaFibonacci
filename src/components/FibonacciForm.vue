@@ -72,7 +72,7 @@ export default {
         document.getElementById('validacao').style.display = "flex";
         return
       } else {
-        while (i >= 2 && i <= this.termo) {
+        while (i >= 2 && i <= this.termo + 2) {
           elementos[i] = elementos[i - 1] + elementos[i - 2];
           i++;
         }
@@ -88,7 +88,14 @@ export default {
         if (isFinite(elementos[this.termo - 1]) === false) {
           this.numero = 'Desculpe... O número é maior que 1,797693134862315.10³⁰⁸ e não pode ser interpretado! :('
         }
-        this.$emit('acharTermo', [this.termo, this.numero, this.notation])
+        let sequenciaFibonacci = `{..., ${elementos[this.termo - 3]}, ${elementos[this.termo - 2]}, ${elementos[this.termo - 1]}, ${elementos[this.termo]}, ${elementos[this.termo + 1]}, ...}`
+        if (this.termo == 1) {
+            sequenciaFibonacci = `{${elementos[this.termo - 1]}, ${elementos[this.termo]}, ${elementos[this.termo + 1]}, ...}`
+        }
+        if (this.termo == 2 || this.termo == 3) {
+            sequenciaFibonacci = `{${elementos[this.termo - 2]}, ${elementos[this.termo - 1]}, ${elementos[this.termo]}, ${elementos[this.termo + 1]}, ...}`
+        }
+        this.$emit('acharTermo', [this.termo, this.numero, this.notation, sequenciaFibonacci])
         }
     }
   },

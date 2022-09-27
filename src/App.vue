@@ -1,11 +1,16 @@
 <template>
   <div class="px-3 py-10 md:px-10">
 
-    <FibonacciForm @acharTermo="numero = $event" />
+    <FibonacciForm @acharTermo="arrayForm = $event" />
 
-    <div v-if="numero" class="flex justify-center">
+    <div v-if="arrayForm" class="flex justify-center">
       <div class="absolute bottom-20">
-        O {{ numero[0]}}º termo da Sequência de Fibonacci é: {{ numero[1] }}<sup>{{ numero[2] }}</sup>
+        <div class="flex justify-center text-gray-50">
+        O {{ arrayForm[0]}}º termo da Sequência de Fibonacci é: {{ arrayForm[1] }}<sup>{{ arrayForm[2] }}</sup>
+      </div>
+      <div class="flex justify-center text-gray-50">
+        {{ arrayForm [3] }}
+      </div>
       </div>
     </div>
   </div>
@@ -18,8 +23,8 @@ export default {
   name: 'App',
   data() {
     return {
-      numero: '',
-      notation: ''
+      // termo, numero, notation(not. cient.) e sequenciaFibonacci(seq. parc.)
+      arrayForm: '',
     }
   },
   components: {
