@@ -9,7 +9,7 @@
         O {{ arrayForm[0]}}º termo da Sequência de Fibonacci é: {{ arrayForm[1] }}<sup>{{ arrayForm[2] }}</sup>
       </div>
       <div class="flex justify-center text-gray-50">
-        {{ arrayForm [3] }}
+        {{ arrayForm[3] }}
       </div>
       </div>
     </div>
