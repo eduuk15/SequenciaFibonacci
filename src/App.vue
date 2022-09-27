@@ -1,26 +1,69 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+<div class="div">
+
+  <div>
+    <p class="text-h2">
+      Sequência de Fibonacci
+    </p>
+  </div>
+
+  <form @submit.stop.prevent="acharTermo">
+    <input
+      v-model="termo"
+      placeholder="Insira o termo que deseja encontrar"
+      type="number"
+    >
+
+    <button
+      type="submit"
+    >
+      ADICIONAR
+    </button>
+  </form>
+
+  {{ numero }}<sup>{{notation}}</sup>
+</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
+  data() {
+    return {
+      termo: '',
+      numero: '',
+      notation: ''
+    }
+  },
+  methods: {
+    acharTermo() {
+      const elementos = [];
+      elementos[0] = 0;
+      elementos[1] = 1;
+
+      let i = 2;
+
+      while (i >= 2 && i <= this.termo) {
+        elementos[i] = elementos[i - 1] + elementos[i - 2];
+        i++;
+      }
+
+      if (isFinite(elementos[this.termo - 1]) === false) {
+        this.numero = 'Desculpe... O número é maior que 1,797693134862315.10³⁰⁸ e não pode ser interpretado! :('
+        return
+      }
+      const strNum = elementos[this.termo - 1].toString();
+      console.log(strNum);
+      const strNumSemPonto = strNum.replace('.', ',');
+      this.notation = strNum.split('e+')[1];
+      if (this.notation) {
+        this.numero = strNumSemPonto.replace(`e+${this.notation}`, '') + '.10'
+      } else {
+        this.numero = strNumSemPonto.replace(`e+${this.notation}`, '');
+      }
+      console.log(this.numero);
+    }
+  },
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
