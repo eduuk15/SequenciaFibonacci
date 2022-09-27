@@ -3,8 +3,10 @@
 
     <FibonacciForm @acharTermo="numero = $event" />
 
-    <div>
-      {{ numero[1] }}<sup>{{ numero[2] }}</sup>
+    <div v-if="numero" class="flex justify-center">
+      <div class="absolute bottom-20">
+        O {{ numero[0]}}º termo da Sequência de Fibonacci é: {{ numero[1] }}<sup>{{ numero[2] }}</sup>
+      </div>
     </div>
   </div>
 </template>
