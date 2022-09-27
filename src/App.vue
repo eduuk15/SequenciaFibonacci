@@ -5,6 +5,9 @@
     <p class="text-h2">
       Sequência de Fibonacci
     </p>
+     <div class="imagem_fibonacci">
+              <img src="https://cdn-icons-png.flaticon.com/512/3383/3383688.png" alt="">
+            </div>
   </div>
 
   <form @submit.stop.prevent="acharTermo">
@@ -17,7 +20,7 @@
     <button
       type="submit"
     >
-      ADICIONAR
+      ACHAR NÚMERO
     </button>
   </form>
 
@@ -39,7 +42,7 @@ export default {
   methods: {
     acharTermo() {
       const elementos = [];
-      elementos[0] = 0;
+      elementos[0] = 1;
       elementos[1] = 1;
 
       let i = 2;
