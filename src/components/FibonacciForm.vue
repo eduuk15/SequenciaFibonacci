@@ -95,6 +95,12 @@ export default {
         if (this.termo == 2 || this.termo == 3) {
             sequenciaFibonacci = `{${elementos[this.termo - 2]}, ${elementos[this.termo - 1]}, ${elementos[this.termo]}, ${elementos[this.termo + 1]}, ...}`
         }
+        if (this.termo == 1475) {
+            sequenciaFibonacci = `{..., ${elementos[this.termo - 3]}, ${elementos[this.termo - 2]}, ${elementos[this.termo - 1]}, ${elementos[this.termo]}, ...}`
+        }
+        if (this.termo == 1476) {
+            sequenciaFibonacci = `{..., ${elementos[this.termo - 3]}, ${elementos[this.termo - 2]}, ${elementos[this.termo - 1]}, ...}`
+        }
         this.$emit('acharTermo', [this.termo, this.numero, this.notation, sequenciaFibonacci])
         }
     }
