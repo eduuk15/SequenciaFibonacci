@@ -3,8 +3,9 @@
 
     <FibonacciForm @acharTermo="arrayForm = $event" />
 
+    <div class="sticky">
     <div v-if="arrayForm" class="flex justify-center">
-      <div v-if="arrayForm[0] < 1477" class="absolute bottom-20">
+      <div v-if="arrayForm[0] < 1477" class="absolute inset-x-20 top-20 px-6 ">
         <div class="flex justify-center text-gray-50">
           O {{ arrayForm[0]}}º termo da Sequência de Fibonacci é: {{ formataElemento(arrayForm[1]) }}<sup>{{ potencia }}</sup>
         </div>
@@ -63,9 +64,12 @@
           ...}
         </div>
       </div>
-      <div v-else class="absolute bottom-20 text-gray-50">
-        {{ arrayForm[1] }}
+      <div v-else class="text-white absolute inset-x-20 top-20 px-6 ">
+        <div class="flex justify-center text-gray-50">
+          {{ arrayForm[1] }}
+        </div>
       </div>
+    </div>
     </div>
   </div>
 </template>
