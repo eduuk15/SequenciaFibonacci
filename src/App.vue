@@ -9,7 +9,7 @@
         <div class="flex justify-center text-gray-50">
           O {{ arrayForm[0]}}º termo da Sequência de Fibonacci é: {{ formataElemento(arrayForm[1]) }}<sup>{{ potencia }}</sup>
         </div>
-        <div v-if="arrayForm[0] == 1" class="flex mt-10 justify-center text-gray-50">
+        <div v-if="arrayForm[0] == 1" class="flex mt-10 w-full justify-center text-gray-50">
           {{montaSequencia(arrayForm[2])}}
           {
           1,
