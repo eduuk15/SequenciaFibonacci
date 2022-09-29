@@ -6,10 +6,61 @@
     <div v-if="arrayForm" class="flex justify-center">
       <div v-if="arrayForm[0] < 1477" class="absolute bottom-20">
         <div class="flex justify-center text-gray-50">
-          O {{ arrayForm[0]}}º termo da Sequência de Fibonacci é: {{ arrayForm[1] }}<sup>{{ arrayForm[2] }}</sup>
+          O {{ arrayForm[0]}}º termo da Sequência de Fibonacci é: {{ formataElemento(arrayForm[1]) }}<sup>{{ potencia }}</sup>
         </div>
-        <div class="flex justify-center text-gray-50">
-          {{ arrayForm[3] }}
+        <div v-if="arrayForm[0] == 1" class="flex mt-10 justify-center text-gray-50">
+          {{montaSequencia(arrayForm[2])}}
+          {
+          1,
+          1,
+          2,
+          ...}
+        </div>
+        <div v-if="arrayForm[0] == 2" class="flex mt-10 justify-center text-gray-50">
+          {{montaSequencia(arrayForm[2])}}
+          {
+          1,
+          1,
+          2,
+          3,
+          ...}
+        </div>
+        <div v-if="arrayForm[0] == 3" class="flex mt-10 justify-center text-gray-50">
+          {{montaSequencia(arrayForm[2])}}
+          {
+          1,
+          1,
+          2,
+          3,
+          5,
+          ...}
+        </div>
+        <div v-if="arrayForm[0] > 3 && arrayForm[0] < 1475" class="flex mt-10 justify-center text-gray-50">
+          {{montaSequencia(arrayForm[2])}}
+          {...,
+          {{ sequenciaFibonacci[0] }}<sup>{{ potencias[0] }}</sup>,
+          {{ sequenciaFibonacci[1] }}<sup>{{ potencias[1] }}</sup>,
+          {{ sequenciaFibonacci[2] }}<sup>{{ potencias[2] }}</sup>,
+          {{ sequenciaFibonacci[3] }}<sup>{{ potencias[3] }}</sup>,
+          {{ sequenciaFibonacci[4] }}<sup>{{ potencias[4] }}</sup>,
+          ...}
+        </div>
+        <div v-if="arrayForm[0] == 1475" class="flex mt-10 justify-center text-gray-50">
+          {{montaSequencia(arrayForm[2])}}
+          {...,
+          {{ sequenciaFibonacci[0] }}<sup>{{ potencias[0] }}</sup>,
+          {{ sequenciaFibonacci[1] }}<sup>{{ potencias[1] }}</sup>,
+          {{ sequenciaFibonacci[2] }}<sup>{{ potencias[2] }}</sup>,
+          {{ sequenciaFibonacci[3] }}<sup>{{ potencias[3] }}</sup>,
+          ...}
+        </div>
+        <div v-if="arrayForm[0] == 1476" class="flex mt-10 justify-center text-gray-50">
+          {{montaSequencia(arrayForm[2])}}
+          {...,
+          {{ sequenciaFibonacci[0] }}<sup>{{ potencias[0] }}</sup>,
+          {{ sequenciaFibonacci[1] }}<sup>{{ potencias[1] }}</sup>,
+          {{ sequenciaFibonacci[2] }}<sup>{{ potencias[2] }}</sup>,
+          ...}
         </div>
       </div>
       <div v-else class="absolute bottom-20 text-gray-50">
@@ -26,12 +77,42 @@ export default {
   name: 'App',
   data() {
     return {
-      // termo, numero, notation(not. cient.) e sequenciaFibonacci(seq. parc.)
+      // termo, numero, sequenciaFibonacci(seq. parc.)
       arrayForm: '',
+      sequenciaFibonacci: [],
+      potencia: '',
+      potencias: []
     }
   },
   components: {
     FibonacciForm
+  },
+  methods: {
+    formataElementos(element) {
+      if (element != undefined) {
+        this.potencias.push(element.split('~')[1]);
+        this.sequenciaFibonacci.push((element.split('~')[0]).replace('.', ',').replace(';', '.10'))
+      } else {
+        this.potencias.push('')
+        this.sequenciaFibonacci.push('')
+      }
+    },
+    formataElemento(element) {
+      if (element != 1) {
+        this.potencia = element.split('~')[1];
+        return (element.split('~')[0]).replace('.', ',').replace(';', '.10')
+      } else {
+        this.potencia = ''
+        return 1
+      }
+    },
+    montaSequencia(array) {
+      array.forEach(this.formataElementos)
+      setTimeout(() => {
+        this.potencias = []
+        this.sequenciaFibonacci = []
+      }, 50)
+    },
   }
 }
 </script>

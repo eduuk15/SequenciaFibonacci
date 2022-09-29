@@ -57,7 +57,6 @@ export default {
     return {
       termo: '',
       numero: '',
-      notation: ''
     }
   },
   methods: {
@@ -77,31 +76,31 @@ export default {
           i++;
         }
 
-        const strNum = elementos[this.termo - 1].toString();
-        const strNumSemPonto = strNum.replace('.', ',');
-        this.notation = strNum.split('e+')[1];
-        if (this.notation) {
-          this.numero = strNumSemPonto.replace(`e+${this.notation}`, '') + '.10'
-        } else {
-          this.numero = strNumSemPonto.replace(`e+${this.notation}`, '');
-        }
-        if (isFinite(elementos[this.termo - 1]) === false) {
+        const elementosFormatados = [];
+        elementos.forEach((n) => {
+          let antesNotation = n.toString().split('e+')[0]
+          let depoisNotation = n.toString().split('e+')[1]
+          if (depoisNotation) {
+            depoisNotation = `;~${depoisNotation}`
+          } else {
+            depoisNotation = ''
+          }
+          let elementoFormatado = `${parseFloat(antesNotation).toFixed(4)}${depoisNotation}`
+          if (parseFloat(antesNotation) == parseInt(antesNotation)) {
+            elementoFormatado = `${parseFloat(antesNotation)}${depoisNotation}`
+          }
+          elementosFormatados.push(elementoFormatado)
+        });
+
+        this.numero = elementosFormatados[this.termo - 1]
+        console.log(this.numero);
+        if (this.termo >= 1477) {
+          console.log('ent');
           this.numero = 'Desculpe... O número é maior que 1,797693134862315.10³⁰⁸ e não pode ser interpretado! :('
         }
-        let sequenciaFibonacci = `{..., ${elementos[this.termo - 3]}, ${elementos[this.termo - 2]}, ${elementos[this.termo - 1]}, ${elementos[this.termo]}, ${elementos[this.termo + 1]}, ...}`
-        if (this.termo == 1) {
-            sequenciaFibonacci = `{${elementos[this.termo - 1]}, ${elementos[this.termo]}, ${elementos[this.termo + 1]}, ...}`
-        }
-        if (this.termo == 2 || this.termo == 3) {
-            sequenciaFibonacci = `{${elementos[this.termo - 2]}, ${elementos[this.termo - 1]}, ${elementos[this.termo]}, ${elementos[this.termo + 1]}, ...}`
-        }
-        if (this.termo == 1475) {
-            sequenciaFibonacci = `{..., ${elementos[this.termo - 3]}, ${elementos[this.termo - 2]}, ${elementos[this.termo - 1]}, ${elementos[this.termo]}, ...}`
-        }
-        if (this.termo == 1476) {
-            sequenciaFibonacci = `{..., ${elementos[this.termo - 3]}, ${elementos[this.termo - 2]}, ${elementos[this.termo - 1]}, ...}`
-        }
-        this.$emit('acharTermo', [this.termo, this.numero, this.notation, sequenciaFibonacci])
+
+        const sequencia = [elementosFormatados[this.termo - 3], elementosFormatados[this.termo - 2], elementosFormatados[this.termo - 1], elementosFormatados[this.termo], elementosFormatados[this.termo + 1]]
+        this.$emit('acharTermo', [this.termo, this.numero, sequencia])
         }
     }
   },
